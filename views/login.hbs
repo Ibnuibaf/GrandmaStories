@@ -1,0 +1,21 @@
+<div class="col-12 d-flex justify-content-center py-5">
+    <div class="text-center my-5 p-5  text-light login-form" style="background-color:rgb(44, 47, 54,0.7);max-width:min-content">
+        <form class="signin" method="post" action="/login">
+            <h2>Login</h2>
+            <div class="error">
+                {{#if error}}
+                <i class="text-warning">{{error}}</i>
+                {{/if}}
+            </div>
+            <div class="form-group mt-5">
+                <label for="username">Username:</label>
+                <input type="text"  id="username" name="username" placeholder="Enter username" style="width: min-content;" required>
+            </div>
+            <div class="form-group my-3">
+                <label for="password">Password:</label>
+                <input type="password"  id="password" name="password" placeholder="Enter password" style="width: min-content;" required>
+            </div>
+            <button type="submit" class="btn btn-danger">LogIn</button>
+        </form>
+    </div>
+</div>

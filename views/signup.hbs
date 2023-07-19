@@ -1,0 +1,40 @@
+<div class="col-12 d-flex justify-content-center py-5">
+    <div class="text-center my-5 p-5  text-light login-form" style="background-color:rgb(44, 47, 54,0.7);max-width:min-content">
+        <form class="signin" method="post" action="/signup">
+            <h2>SignUp</h2>
+            <div class="error">
+                {{#if error}}
+                <i class="text-warning">{{error}}</i>
+                {{/if}}
+            </div>
+            <div class="form-group mt-5">
+                <label for="email">Email:</label>
+                <input type="email"  id="email" placeholder="Enter email@gmail.com" name="email" style="width: min-content;" required>
+            </div>
+            
+            <div class="form-group mt-5">
+                <label for="username">Username:</label>
+                <input type="text"  id="username" placeholder="Enter username" name="username" style="width: min-content;" required>
+            </div>
+            <div class="error">
+                {{#if usererror}}
+                <i class="text-warning">{{usererror}}</i>
+                {{/if}}
+            </div>
+            
+            <div class="form-group my-3">
+                <label for="password">Password:</label>
+                <input type="password"  id="password" placeholder="Enter password" name="password" style="width: min-content;" required>
+            </div>
+            <div class="error">
+                {{#if passerror}}
+                <i class="text-warning">{{passerror}}</i>
+                {{/if}}
+            </div>
+            <div class="acc-exist">
+                <p>Already have an Account? <a href="/login">login</a></p>
+            </div>
+            <button type="submit" class="btn btn-danger">Sign Up</button>
+        </form>
+    </div>
+</div>

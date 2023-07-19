@@ -1,0 +1,134 @@
+<div class="col-12 logout mb-5 ">
+    <a href="/administration/logout" class="login bg-danger btn text-light ">logout</a>
+</div>
+<form action="/administration" method="post">
+    <div class="m-3 px-2 py-1  rounded-pill d-flex align-items-center"
+        style="max-width: fit-content;background-color: red;">
+
+        <input type="text" name="search" id="search" placeholder="Search by username"
+            style="background: transparent;outline: none;border: none;color: #fafafa;">
+        <button type="submit" style="background: transparent;border: none;"><img src="/images/search-30.png" alt=""
+                height="20"></button>
+    </div>
+</form>
+<div class="users-tab mx-3">
+    <p class="text-warning text-center d-block d-md-none screen-limit rounded p-1" style="background-color: red;">Some
+        of Datas are not Available in
+        your device!</p>
+    <div class="error">
+        {{#if deletemsg}}
+        <i class="text-warning">{{deletemsg}}</i>
+        {{/if}}
+    </div>
+    <div class="table tab">
+        <table class="table ">
+            <thead class="" style="position: sticky;top: 0;">
+                <tr>
+                    <th scope="col" style="background-color: red;" class="d-none d-md-block">Email</th>
+                    <th scope="col" style="background-color: red;">Username</th>
+                    <th scope="col" style="background-color: red;">ADMIN</th>
+                    <th scope="col" style="background-color: red;">Options</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each usersData}}
+                <tr class="data-row ">
+                    <td class="d-none d-md-block">{{this.email}}</td>
+                    <td>{{this.username}}</td>
+                    <td class="text-warning">{{this.admin}}</td>
+                    <td>
+                        <form action="/administration/deleteuser" method="post">
+                            <input type="hidden" name="user" value="{{this._id}}">
+                            <button type="submit" class=" bg-danger py-0 px-2 rounded border-0"><img
+                                    src="/images/delete-48.png" alt="" height="20"></button>
+                        </form>
+
+                    </td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+
+    </div>
+</div>
+
+<div class="options row d-flex justify-content-center">
+    <div class="row container-fluid m-3 py-3  text-light" style="background-color: #2c2f36;max-width: min-content;">
+        <div class="col my-2">
+            <i class="text-warning">EDIT User : </i>
+        </div>
+        <form action="/administration/edituser" method="post" class="d-flex row align-items-spacebetween">
+            <div class="error">
+                {{#if editmessage}}
+                <i class="text-warning">{{editmessage}}</i>
+                {{/if}}
+            </div>
+            <div class="form-group my-3">
+                <label for="username">Username:</label>
+                <input type="username" id="username" placeholder="username" name="username" style="width: min-content;"
+                    class="rounded " required>
+            </div>
+            <div class="form-group my-3">
+                <label for="email">Email:</label>
+                <input type="email" id="email" placeholder="email" name="email" style="width: min-content;"
+                    class="rounded " required>
+            </div>
+            <div class="form-group my-3">
+                <label for="admin">ADMIN:</label>
+                <label for="true">true</label>
+                <input type="radio" id="admin" name="admin" value="true" style="width: min-content;" class="rounded ">
+                <label for="false">false</label>
+                <input type="radio" id="admin" name="admin" value="false" style="width: min-content;" class="rounded ">
+            </div>
+            <div class="mt-1">
+                <input type="submit" class="btn bg-danger text-warning" placeholder="SUBMIT" aria-label="SUBMIT">
+            </div>
+        </form>
+    </div>
+    <div class="row container-fluid m-3 py-3  " style="background-color: #2c2f36;max-width: min-content;">
+        <div class="col my-2">
+            <i class="text-warning">Create new User : </i>
+        </div>
+        <form action="/administration/createuser" method="post" class="row text-light login-form">
+            <div class="error">
+                {{#if error}}
+                <i class="text-warning">{{error}}</i>
+                {{/if}}
+            </div>
+            <div class="form-group my-3">
+                <label for="email">Email:</label>
+                <input type="email" id="email" placeholder="email" name="email" style="width: min-content;"
+                    class="rounded " required>
+            </div>
+            
+            <div class="form-group my-3">
+                <label for="username">Username:</label>
+                <input type="username" id="username" placeholder="username" name="username" style="width: min-content;"
+                    class="rounded " required>
+            </div>
+            <div class="error">
+                {{#if usererror}}
+                <i class="text-warning">{{usererror}}</i>
+                {{/if}}
+            </div>
+            <div class="form-group my-3">
+                <label for="password">Password:</label>
+                <input type="password" id="password" placeholder="Enter password" name="password"
+                    style="width: min-content;" class="rounded " required>
+            </div>
+            <div class="error">
+                {{#if passerror}}
+                <i class="text-warning">{{passerror}}</i>
+                {{/if}}
+            </div>
+            <div class="form-group my-3">
+                <label for="password">ADMIN:</label>
+                <input type="checkbox" id="password" name="admin" value="true" style="width: min-content;"
+                    class="rounded ">
+            </div>
+            <div class="mt-1">
+                <input type="submit" class="btn bg-danger text-warning" placeholder="SUBMIT" aria-label="SUBMIT">
+            </div>
+        </form>
+    </div>
+</div>
