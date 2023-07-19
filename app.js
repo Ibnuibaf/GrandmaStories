@@ -15,6 +15,8 @@ const connectDB = require('./config/connection')
 app.set('view engine', 'hbs')
 app.set('views', __dirname + "/views")
 
+
+
 const randomCrypto = () => {
     return crypto.randomBytes(32).toString('hex')
 }
@@ -30,6 +32,7 @@ app.use(
         saveUninitialized: false
     })
 )
+
 
 connectDB()
 
