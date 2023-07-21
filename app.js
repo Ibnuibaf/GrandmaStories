@@ -35,7 +35,12 @@ app.use(
 
 
 connectDB()
-
+app.use((req, res, next) => {
+    res.header('Cache-Control', 'private, no-cache, no-store, must-revalidate');
+    res.header('Expires', '-1');
+    res.header('Pragma', 'no-cache');
+    next();
+});
 
 app.use('/', indexRouter)
 app.use('/signup', signupRouter)
@@ -45,7 +50,7 @@ app.use('/administration', adminRouter)
 
 // Add this middleware at the end of your route handlers
 app.use((req, res, next) => {
-    res.status(404).send('Route not found'); // Send a 404 status and error message
+    res.status(404).render('error'); // Send a 404 status and error message
 });
 
 app.listen(8888)

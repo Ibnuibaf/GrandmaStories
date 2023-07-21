@@ -15,10 +15,22 @@ router.get('/', (req, res) => {
     res.render('login')
 })
 router.post('/', async (req, res) => {
+    
+    const user = req.cookies.user
+    const admin = req.cookies.admin
+    if (user) {
+        return res.redirect('/home')
+    }
+    if (admin) {
+        return res.redirect('/administration')
+    }
     try {
         const username = req.body.username;
         const password = req.body.password;
 
+        if(!username || !password){
+            return res.render('login', { error: 'Fill the Fields!' });
+        }
         const user = await db.findOne({ username: username });
 
         if (!user) {

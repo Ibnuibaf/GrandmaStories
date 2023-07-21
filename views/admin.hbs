@@ -1,7 +1,7 @@
 <div class="col-12 logout mb-5 ">
     <a href="/administration/logout" class="login bg-danger btn text-light ">logout</a>
 </div>
-<form action="/administration" method="post">
+<form action="/administration/searchdat" method="post">
     <div class="m-3 px-2 py-1  rounded-pill d-flex align-items-center"
         style="max-width: fit-content;background-color: red;">
 
@@ -15,11 +15,6 @@
     <p class="text-warning text-center d-block d-md-none screen-limit rounded p-1" style="background-color: red;">Some
         of Datas are not Available in
         your device!</p>
-    <div class="error">
-        {{#if deletemsg}}
-        <i class="text-warning">{{deletemsg}}</i>
-        {{/if}}
-    </div>
     <div class="table tab">
         <table class="table ">
             <thead class="" style="position: sticky;top: 0;">
@@ -35,20 +30,28 @@
                 <tr class="data-row ">
                     <td class="d-none d-md-block">{{this.email}}</td>
                     <td>{{this.username}}</td>
-                    <td class="text-warning">{{this.admin}}</td>
+                    <td class="text-primary">{{this.admin}}</td>
                     <td>
                         <form action="/administration/deleteuser" method="post">
                             <input type="hidden" name="user" value="{{this._id}}">
-                            <button type="submit" class=" bg-danger py-0 px-2 rounded border-0"><img
-                                    src="/images/delete-48.png" alt="" height="20"></button>
+                            <button type="submit" class="bg-danger py-0 px-2 rounded border-0"
+                                onclick="confirmDelete(event)"><img src="/images/delete-48.png" alt=""
+                                    height="20"></button>
                         </form>
-
                     </td>
                 </tr>
                 {{/each}}
             </tbody>
         </table>
-
+        <script>
+            function confirmDelete(event) {
+                event.preventDefault(); 
+                const confirmation = confirm("Are you sure you want to delete this user?");
+                if (confirmation) {
+                    event.target.closest('form').submit(); 
+                }
+            }
+        </script>
     </div>
 </div>
 
@@ -100,7 +103,7 @@
                 <input type="email" id="email" placeholder="email" name="email" style="width: min-content;"
                     class="rounded " required>
             </div>
-            
+
             <div class="form-group my-3">
                 <label for="username">Username:</label>
                 <input type="username" id="username" placeholder="username" name="username" style="width: min-content;"

@@ -96,6 +96,10 @@ li a {
 
 }
 
+.section-notfound {
+    background: #2c2f36,
+}
+
 .tab-head {
     background-color: #ff0000;
     color: #fafafa;
@@ -103,7 +107,7 @@ li a {
 
 .tab {
     background-color: #ffffff;
-    
+
     height: 450px;
     /* Set the desired height for the table container */
     overflow: auto;
